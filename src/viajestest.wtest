@@ -1,0 +1,107 @@
+import viajes.*
+
+describe "Test de viajes"{
+	
+	const viajeCiudad1 = new ViajeCiudad(
+		idiomas = #{"italiano","español"},
+		atracciones = [1,2,3,4]
+	)
+	const viajeTropical1 = new ViajeTropical(
+		idiomas = #{"italiano"},
+		atracciones = [1,2,3,4]
+	)
+	const viajeCiudad2 = new ViajeCiudad(
+		idiomas = #{"italiano","español"},
+		atracciones = [1,2,3,4,5,6,7,8]
+	)
+	const viajeTropical2 = new ViajeTropical(
+		idiomas = #{"italiano","español"},
+		atracciones = [1,2,3,4,5,6,7,8]
+	)
+	const viajeTropical3 = new ViajeTropical(
+		idiomas = #{"italiano","español"},
+		atracciones = [1,2,3,4,5,6,7,8,9,10]
+	)
+	const trekking1 = new SalidaTrekking(
+		idiomas = #{"español"},
+		diasDeSol = 130,
+		kilometros = 100
+	)
+	const trekking2 = new SalidaTrekking(
+		idiomas = #{"español","italiano"},
+		diasDeSol = 240,
+		kilometros = 50
+	)
+	const trekking3 = new SalidaTrekking(
+		diasDeSol = 130,
+		kilometros = 250
+	)
+	
+	test"viajeCiudad1 lleva 2 dias, no implica esfuerzo y no sirve para broncearse"{
+		assert.equals(true, viajeCiudad1.diasQueLleva() == 2 and
+							not viajeCiudad1.implicaEsfuerzo() and
+							not viajeCiudad1.sirveParaBroncearse()
+		)
+	}
+	test"viajeTropical1 lleva 3 dias, no implica esfuerzo y sirve para broncearse"{
+		assert.equals(true, viajeTropical1.diasQueLleva() == 3 and
+							not viajeTropical1.implicaEsfuerzo() and
+							viajeTropical1.sirveParaBroncearse()
+		)
+	}
+	test"viajeCiudad2 lleva 4 dias, implica esfuerzo y no sirve para broncearse"{
+		assert.equals(true, viajeCiudad2.diasQueLleva() == 4 and
+							viajeCiudad2.implicaEsfuerzo() and
+							not viajeCiudad2.sirveParaBroncearse()
+		)
+	}
+	test"viajeTropical2 lleva 5 dias, implica esfuerzo y no sirve para broncearse"{
+		assert.equals(true, viajeTropical2.diasQueLleva() == 5 and
+							viajeTropical2.implicaEsfuerzo() and
+							viajeTropical2.sirveParaBroncearse()
+		)
+	}
+	test"viajeTropical3 lleva 4 dias, implica esfuerzo y no sirve para broncearse"{
+		assert.equals(true, viajeTropical3.diasQueLleva() == 6 and
+							not viajeTropical3.implicaEsfuerzo() and
+							viajeTropical3.sirveParaBroncearse()
+		)
+	}
+	test"trekking1 lleva 2 dias, implica esfuerzo y no sirve para broncearse"{
+		assert.equals(true, trekking1.diasQueLleva() == 2 and
+							trekking1.implicaEsfuerzo() and
+							not trekking1.sirveParaBroncearse()
+		)
+	}
+	test"trekking2 lleva 1 dias, no implica esfuerzo y sirve para broncearse"{
+		assert.equals(true, trekking2.diasQueLleva() == 1 and
+							not trekking2.implicaEsfuerzo() and
+							trekking2.sirveParaBroncearse()
+		)
+	}
+	test"trekking3 lleva 5 dias, implica esfuerzo y sirve para broncearse"{
+		assert.equals(true, trekking3.diasQueLleva() == 5 and
+							trekking3.implicaEsfuerzo() and
+							trekking3.sirveParaBroncearse()
+		)
+	}
+	test"viajeCiudad1 es interesante"{
+		assert.equals(true, viajeCiudad1.esInteresante())
+	}
+	test"viajeTropical1 NO es interesante"{
+		assert.equals(false, viajeTropical1.esInteresante())
+	}
+	test"trekking2 es interesante"{
+		assert.equals(true, trekking2.esInteresante())
+	}
+}
+
+
+
+
+
+
+
+
+
+

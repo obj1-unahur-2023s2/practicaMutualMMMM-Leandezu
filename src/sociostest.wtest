@@ -1,0 +1,44 @@
+import viajes.*
+import socios.*
+
+describe"Test de socios"{
+	const viaje1 = new ViajePlaya(largo = 1000)
+	const viaje2 = new ViajePlaya(largo = 2000)
+	const claseGym = new ClaseGimnasia()
+	const roque = new Socio(
+		actividades = [viaje1, viaje2],
+		maximo = 2
+	)
+	const ana = new Socio(
+		actividades = [viaje1, viaje2],
+		maximo = 3
+	)
+	test"roque adora el sol"{
+		assert.equals(true, roque.adoraElSol())
+	}
+	test"El viaje de 2000 metros es la actividad esforzada de roque"{
+		assert.equals([viaje2], roque.actividadesEsforzadas())
+	}
+	test"si roque registra una clase de gimnasia genera un error"{
+		assert.throwsExceptionWithMessage("Ya hizo el maximo de actividades", {roque.registrarActividad(claseGym)})
+	}
+	test"Ana si puede registar una clase de gimnasia"{
+		ana.registrarActividad(claseGym)
+		assert.equals([viaje1,viaje2,claseGym], ana.actividades())
+	}
+	test"Ana ya no adora el sol al registrar gimnasia"{
+		ana.registrarActividad(claseGym)
+		assert.equals(false, ana.adoraElSol())
+	}
+	test"Las actividades forzadas de ana son viaje2 y claseGym"{
+		ana.registrarActividad(claseGym)
+		assert.equals([viaje2, claseGym], ana.actividadesEsforzadas())
+	}
+}
+
+
+
+
+
+
+
